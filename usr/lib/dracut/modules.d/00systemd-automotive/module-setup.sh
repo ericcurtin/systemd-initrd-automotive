@@ -36,23 +36,11 @@ install() {
     # Stuff typical to base
     local VERSION=""
     local PRETTY_NAME=""
-    # Derive an os-release file from the host, if it exists
-    if [[ -e $dracutsysrootdir/etc/os-release ]]; then
-        # shellcheck disable=SC1090
-        . "$dracutsysrootdir"/etc/os-release
-        grep -hE -ve '^VERSION=' -ve '^PRETTY_NAME' "$dracutsysrootdir"/etc/os-release > "${initdir}"/usr/lib/initrd-release
-        [[ -n ${VERSION} ]] && VERSION+=" "
-        [[ -n ${PRETTY_NAME} ]] && PRETTY_NAME+=" "
-    else
-        # Fall back to synthesizing one, since dracut is presently used
-        # on non-systemd systems as well.
-        {
-            echo "NAME=dracut"
-            echo "ID=dracut"
-            echo "VERSION_ID=\"$DRACUT_VERSION\""
-            echo 'ANSI_COLOR="0;34"'
-        } > "${initdir}"/usr/lib/initrd-release
-    fi
+    # shellcheck disable=SC1090
+    . "$dracutsysrootdir"/etc/os-release
+    grep -hE -ve '^VERSION=' -ve '^PRETTY_NAME' "$dracutsysrootdir"/etc/os-release > "${initdir}"/usr/lib/initrd-release
+    [[ -n ${VERSION} ]] && VERSION+=" "
+    [[ -n ${PRETTY_NAME} ]] && PRETTY_NAME+=" "
     VERSION+="dracut-$DRACUT_VERSION"
     PRETTY_NAME+="dracut-$DRACUT_VERSION (Initramfs)"
     {
