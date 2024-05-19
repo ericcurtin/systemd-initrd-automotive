@@ -1,0 +1,15 @@
+[Unit]
+Description=Mount sysroot
+DefaultDependencies=no
+After=systemd-modules-load.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mount -t ext4 /dev/vda3 /sysroot
+StandardOutput=tty
+StandardError=tty
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target
+
