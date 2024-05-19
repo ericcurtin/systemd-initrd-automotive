@@ -2,7 +2,7 @@
 
 ## Overview
 
-usystemd-dracut is a reference implementation for the smallest systemd-based initramfs that can be built using dracut (pretty much). It is designed to demonstrate the essential functionality required for an initramfs, including performing a switchroot to a root filesystem and supporting the loading of kernel modules.
+usystemd-dracut is a reference implementation for the smallest systemd-based initramfs that can be built using dracut (pretty much). It is designed to demonstrate the essential functionality required for an initramfs, loading kernel modules and performing a switchroot.
 
 ## Features
 
