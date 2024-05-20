@@ -4,6 +4,7 @@ install() {
     inst_multiple -o \
         "$systemdutildir"/systemd \
         "$systemdutildir"/systemd-modules-load \
+        "$systemdsystemunitdir"/emergency.target \
         "$systemdsystemunitdir"/sysinit.target \
         "$systemdsystemunitdir"/basic.target \
         "$systemdsystemunitdir"/initrd.target \
@@ -16,6 +17,8 @@ install() {
         "$systemdsystemunitdir"/initrd-cleanup.service \
         "$systemdsystemunitdir"/systemd-modules-load.service \
         "$systemdsystemunitdir"/sysroot.service \
+        "$systemdsystemunitdir"/emergency.service \
+        "$systemdsystemunitdir"/rescue.service \
         systemctl mount
 
     inst_dir /sysroot

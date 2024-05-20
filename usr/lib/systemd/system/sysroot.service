@@ -1,11 +1,14 @@
 [Unit]
 Description=Mount sysroot
 DefaultDependencies=no
+Before=initrd-switch-root.target initrd-cleanup.service
 After=systemd-modules-load.service
 
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/mount -t ext4 /dev/vda3 /sysroot
+Restart=on-failure
+RestartSec=1ms
 StandardOutput=tty
 StandardError=tty
 RemainAfterExit=yes
